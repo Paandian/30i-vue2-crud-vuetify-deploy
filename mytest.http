@@ -1,0 +1,153 @@
+
+# SIGNUP
+// moderator signup
+post http://localhost:8080/api/auth/signup
+Content-Type: application/json
+
+{
+    "username": "mod",
+    "email": "mod@email.com",
+    "password": "123456",
+    "roles": ["moderator", "user"]
+}
+
+// admin signup
+###
+post http://localhost:8080/api/auth/signup
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "email": "admin@email.com",
+    "password": "123456",
+    "roles": ["admin"]
+}
+
+// user signup
+###
+post http://localhost:8080/api/auth/signup
+Content-Type: application/json
+
+{
+    "username": "user",
+    "email": "user@email.com",
+    "password": "123456",
+    "roles": ["user"]
+}
+
+# SIGNIN
+// moderator signin
+###
+post http://localhost:8080/api/auth/signin
+Content-Type: application/json
+
+{
+    "username": "mod",
+    "password": "123456"
+}
+
+// admin signin
+###
+post http://localhost:8080/api/auth/signin
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "123456"
+}
+
+// user signin
+###
+post http://localhost:8080/api/auth/signin
+Content-Type: application/json
+
+{
+    "username": "user",
+    "password": "123456"
+}
+
+// for public access
+###
+get http://localhost:8080/api/test/all
+
+
+// for loggedin users (role: user/moderator/admin)
+###
+get http://localhost:8080/api/test/user
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI5MTg2ODU5LCJleHAiOjE2MjkxOTA0NTl9.ijc7tnuuf9VEU-uk5gsPYaQD6TrzCcUzRurx0nUSBrI
+
+
+// for users having moderator role
+###
+get http://localhost:8080/api/test/mod
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI5MTg2ODU5LCJleHAiOjE2MjkxOTA0NTl9.ijc7tnuuf9VEU-uk5gsPYaQD6TrzCcUzRurx0nUSBrI
+
+// for users having admin role
+###
+get http://localhost:8080/api/test/admin
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI5MTg2ODU5LCJleHAiOjE2MjkxOTA0NTl9.ijc7tnuuf9VEU-uk5gsPYaQD6TrzCcUzRurx0nUSBrI
+
+# REFRESHTOKEN
+// moderator signup
+###
+post http://localhost:8080/api/auth/refreshtoken
+Content-Type: application/json
+
+{
+    "refreshToken": "6f0e4626-7944-487e-9e9e-ead7a96e438f"
+}
+
+
+// TUTORIALS REST CLIENT 
+
+// Create a new Tutorial
+###
+post http://localhost:8080/api/tutorials
+Content-Type: application/json
+
+
+{
+    "id": 1,
+    "title": "JS: Node Tut #1",
+    "description": "Tut#1 Description",
+    "published": false,
+    "updatedAt": "2019-12-13T01:13:57.650Z",
+    "createdAt": "2019-12-13T01:13:57.650Z"
+}
+
+
+# Get All Tutorials
+###
+get http://localhost:8080/api/tutorials
+
+# Get single Tutorial
+###
+get http://localhost:8080/api/tutorials/2
+
+# Update a Tutorial
+###
+put http://localhost:8080/api/tutorials/2
+Content-Type: application/json
+
+{
+    "published": true
+}
+
+
+# Find all Tutorials which title contains ‘node’
+###
+get http://localhost:8080/api/tutorials?title=node
+
+# Find all published tutorials
+###
+get http://localhost:8080/api/tutorials/published
+
+
+# Delete a tutorial
+###
+delete http://localhost:8080/api/tutorials/1
+
+
+# Delete ALL tutorial
+###
+delete http://localhost:8080/api/tutorials/
